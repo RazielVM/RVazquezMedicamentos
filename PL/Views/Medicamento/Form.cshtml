@@ -1,0 +1,43 @@
+﻿@model ML.Medicamento
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Formulario</h2>
+
+<hr />
+
+@using (Html.BeginForm("Form", "Medicamento", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.IdMedicamento)
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Nombre)
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @placeholder = "Nombre de medicamento" })
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Descripcion)
+            @Html.TextBoxFor(model => model.Descripcion, new { @class = "form-control", @placeholder = "Descripcion de medicamento" })
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Presentacion.NombrePresentacion, "Presentacion medicamento")
+            @Html.DropDownListFor(model => model.Presentacion.IdPresentacion, new SelectList(Model.Presentacion.Presentaciones, "IdPresentacion", "NombrePresentacion"), new { @class = "form-select" })
+        </div>
+    </div>
+
+    <div>
+        <div>
+            @Html.LabelFor(model => model.Dosis)
+            @Html.TextBoxFor(model => model.Dosis, new { @class = "form-control", @placeholder = "Dosis del Medicamento" })
+        </div>
+        <div>
+            @Html.LabelFor(model => model.NombreLaboratio, "Laboratorio que fabrico")
+            @Html.TextBoxFor(model => model.NombreLaboratio, new { @class = "form-control", @placeholder = "Descripcion de medicamento" })
+        </div>
+        <div>
+            @Html.LabelFor(model => model.FechaCaducidad)
+            @Html.TextBoxFor(model => model.FechaCaducidad, new { @class = "form-control", @placeholder = "Descripcion de medicamento", @type = "date" })
+        </div>
+    </div>
+}

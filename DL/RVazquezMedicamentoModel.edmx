@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RVazquezMedicamentoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="IdMedicamento" />
+          </Key>
+          <Property Name="IdMedicamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Presentacion" Type="int" Nullable="false" />
+          <Property Name="Dosis" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="NombreLaboratorio" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="FechaCaducidad" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Presentacion">
+          <Key>
+            <PropertyRef Name="IdPresentacion" />
+          </Key>
+          <Property Name="IdPresentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Medicamento_Presentacion">
+          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="1" />
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presentacion">
+              <PropertyRef Name="IdPresentacion" />
+            </Principal>
+            <Dependent Role="Medicamento">
+              <PropertyRef Name="Presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="MedicamentoAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Presentacion" Type="int" Mode="In" />
+          <Parameter Name="Dosis" Type="varchar" Mode="In" />
+          <Parameter Name="NombreLaboratorio" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCaducidad" Type="date" Mode="In" />
+        </Function>
+        <Function Name="MedicamentoDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdMedicamento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MedicamentoGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="MedicamentoGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdMedicamento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MedicamentoUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdMedicamento" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Presentacion" Type="int" Mode="In" />
+          <Parameter Name="Dosis" Type="varchar" Mode="In" />
+          <Parameter Name="NombreLaboratorio" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCaducidad" Type="date" Mode="In" />
+        </Function>
+        <Function Name="PresentacionGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="RVazquezMedicamentoModelStoreContainer">
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presentacion" EntityType="Self.Presentacion" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Medicamento_Presentacion" Association="Self.FK_Medicamento_Presentacion">
+            <End Role="Presentacion" EntitySet="Presentacion" />
+            <End Role="Medicamento" EntitySet="Medicamento" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RVazquezMedicamentoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="IdMedicamento" />
+          </Key>
+          <Property Name="IdMedicamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Presentacion" Type="Int32" Nullable="false" />
+          <Property Name="Dosis" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreLaboratorio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaCaducidad" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Presentacion1" Relationship="Self.FK_Medicamento_Presentacion" FromRole="Medicamento" ToRole="Presentacion" />
+        </EntityType>
+        <EntityType Name="Presentacion">
+          <Key>
+            <PropertyRef Name="IdPresentacion" />
+          </Key>
+          <Property Name="IdPresentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Medicamentoes" Relationship="Self.FK_Medicamento_Presentacion" FromRole="Presentacion" ToRole="Medicamento" />
+        </EntityType>
+        <Association Name="FK_Medicamento_Presentacion">
+          <End Role="Presentacion" Type="Self.Presentacion" Multiplicity="1" />
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presentacion">
+              <PropertyRef Name="IdPresentacion" />
+            </Principal>
+            <Dependent Role="Medicamento">
+              <PropertyRef Name="Presentacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RVazquezMedicamentoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Medicamentoes" EntityType="Self.Medicamento" />
+          <EntitySet Name="Presentacions" EntityType="Self.Presentacion" />
+          <AssociationSet Name="FK_Medicamento_Presentacion" Association="Self.FK_Medicamento_Presentacion">
+            <End Role="Presentacion" EntitySet="Presentacions" />
+            <End Role="Medicamento" EntitySet="Medicamentoes" />
+          </AssociationSet>
+          <FunctionImport Name="MedicamentoAdd">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Presentacion" Mode="In" Type="Int32" />
+            <Parameter Name="Dosis" Mode="In" Type="String" />
+            <Parameter Name="NombreLaboratorio" Mode="In" Type="String" />
+            <Parameter Name="FechaCaducidad" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="MedicamentoDelete">
+          <Parameter Name="IdMedicamento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MedicamentoUpdate">
+            <Parameter Name="IdMedicamento" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Presentacion" Mode="In" Type="Int32" />
+            <Parameter Name="Dosis" Mode="In" Type="String" />
+            <Parameter Name="NombreLaboratorio" Mode="In" Type="String" />
+            <Parameter Name="FechaCaducidad" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="PresentacionGetAll" ReturnType="Collection(RVazquezMedicamentoModel.PresentacionGetAll_Result)" />
+          <FunctionImport Name="MedicamentoGetAll" ReturnType="Collection(RVazquezMedicamentoModel.MedicamentoGetAll_Result)" />
+          <FunctionImport Name="MedicamentoGetById" ReturnType="Collection(RVazquezMedicamentoModel.MedicamentoGetById_Result)">
+            <Parameter Name="IdMedicamento" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="PresentacionGetAll_Result">
+          <Property Type="Int32" Name="IdPresentacion" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="MedicamentoGetAll_Result">
+          <Property Type="Int32" Name="IdMedicamento" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Presentacion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Dosis" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="NombreLaboratorio" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaCaducidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="MedicamentoGetById_Result">
+          <Property Type="Int32" Name="IdMedicamento" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="Presentacion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Dosis" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="NombreLaboratorio" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="FechaCaducidad" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RVazquezMedicamentoModelStoreContainer" CdmEntityContainer="RVazquezMedicamentoEntities">
+          <EntitySetMapping Name="Medicamentoes">
+            <EntityTypeMapping TypeName="RVazquezMedicamentoModel.Medicamento">
+              <MappingFragment StoreEntitySet="Medicamento">
+                <ScalarProperty Name="IdMedicamento" ColumnName="IdMedicamento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="NombreLaboratorio" ColumnName="NombreLaboratorio" />
+                <ScalarProperty Name="FechaCaducidad" ColumnName="FechaCaducidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Presentacions">
+            <EntityTypeMapping TypeName="RVazquezMedicamentoModel.Presentacion">
+              <MappingFragment StoreEntitySet="Presentacion">
+                <ScalarProperty Name="IdPresentacion" ColumnName="IdPresentacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="MedicamentoAdd" FunctionName="RVazquezMedicamentoModel.Store.MedicamentoAdd" />
+          <FunctionImportMapping FunctionImportName="MedicamentoDelete" FunctionName="RVazquezMedicamentoModel.Store.MedicamentoDelete" />
+          <FunctionImportMapping FunctionImportName="MedicamentoUpdate" FunctionName="RVazquezMedicamentoModel.Store.MedicamentoUpdate" />
+          <FunctionImportMapping FunctionImportName="PresentacionGetAll" FunctionName="RVazquezMedicamentoModel.Store.PresentacionGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RVazquezMedicamentoModel.PresentacionGetAll_Result">
+                <ScalarProperty Name="IdPresentacion" ColumnName="IdPresentacion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MedicamentoGetAll" FunctionName="RVazquezMedicamentoModel.Store.MedicamentoGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RVazquezMedicamentoModel.MedicamentoGetAll_Result">
+                <ScalarProperty Name="IdMedicamento" ColumnName="IdMedicamento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="NombreLaboratorio" ColumnName="NombreLaboratorio" />
+                <ScalarProperty Name="FechaCaducidad" ColumnName="FechaCaducidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MedicamentoGetById" FunctionName="RVazquezMedicamentoModel.Store.MedicamentoGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RVazquezMedicamentoModel.MedicamentoGetById_Result">
+                <ScalarProperty Name="IdMedicamento" ColumnName="IdMedicamento" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="NombreLaboratorio" ColumnName="NombreLaboratorio" />
+                <ScalarProperty Name="FechaCaducidad" ColumnName="FechaCaducidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
