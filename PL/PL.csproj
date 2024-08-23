@@ -186,6 +186,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Medicamento\GetAll.cshtml" />
     <Content Include="Views\Medicamento\Form.cshtml" />
+    <Content Include="Views\Medicamento\GetAll2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

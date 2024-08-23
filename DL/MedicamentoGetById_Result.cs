@@ -16,6 +16,7 @@ namespace DL
         public int IdMedicamento { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public int IdPresentacion { get; set; }
         public string Presentacion { get; set; }
         public string Dosis { get; set; }
         public string NombreLaboratorio { get; set; }

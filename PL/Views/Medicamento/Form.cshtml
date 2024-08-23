@@ -8,6 +8,13 @@
 
 <hr />
 
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-info">
+        @ViewBag.Mensaje
+    </div>
+}
+
 @using (Html.BeginForm("Form", "Medicamento", FormMethod.Post))
 {
     @Html.HiddenFor(model => model.IdMedicamento)
@@ -40,4 +47,6 @@
             @Html.TextBoxFor(model => model.FechaCaducidad, new { @class = "form-control", @placeholder = "Descripcion de medicamento", @type = "date" })
         </div>
     </div>
+
+    <input type="submit" value="Guardar" class="btn btn-success" />
 }

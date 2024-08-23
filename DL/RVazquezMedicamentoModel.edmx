@@ -156,6 +156,7 @@
           <Property Type="Int32" Name="IdMedicamento" Nullable="false" />
           <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
+          <Property Type="Int32" Name="IdPresentacion" Nullable="false" />
           <Property Type="String" Name="Presentacion" Nullable="false" MaxLength="30" />
           <Property Type="String" Name="Dosis" Nullable="false" MaxLength="2" />
           <Property Type="String" Name="NombreLaboratorio" Nullable="false" MaxLength="200" />
@@ -218,6 +219,7 @@
                 <ScalarProperty Name="IdMedicamento" ColumnName="IdMedicamento" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdPresentacion" ColumnName="IdPresentacion" />
                 <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
                 <ScalarProperty Name="Dosis" ColumnName="Dosis" />
                 <ScalarProperty Name="NombreLaboratorio" ColumnName="NombreLaboratorio" />

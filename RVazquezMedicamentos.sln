@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL", "DL\DL.csproj", "{7FE7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{0F2F290D-A824-4FFD-AA9C-BDCC3F19CFE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL_OleDB", "DL_OleDB\DL_OleDB.csproj", "{884D22BD-2D2B-4795-B7A6-C06FC03A6711}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0F2F290D-A824-4FFD-AA9C-BDCC3F19CFE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F2F290D-A824-4FFD-AA9C-BDCC3F19CFE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F2F290D-A824-4FFD-AA9C-BDCC3F19CFE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{884D22BD-2D2B-4795-B7A6-C06FC03A6711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{884D22BD-2D2B-4795-B7A6-C06FC03A6711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{884D22BD-2D2B-4795-B7A6-C06FC03A6711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{884D22BD-2D2B-4795-B7A6-C06FC03A6711}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
